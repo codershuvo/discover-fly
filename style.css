@@ -120,3 +120,17 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+
+
+.button {
+    border: none;
+    font-size: .7em;
+    color: #3352F2;
+    padding: 5px;
+    background: none;
+    cursor: pointer;
+}
+
+.input-group {
+    align-items: center;
+}

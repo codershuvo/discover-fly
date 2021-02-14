@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
+    <!-- Font awesome Icon CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -32,7 +34,7 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
@@ -51,20 +53,22 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="first-ticket-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p>+ -</p>
+                    <button onclick="handleTicketChange('first', false)" class="button"><i class="fas fa-minus"></i></button>
+                    <button onclick="handleTicketChange('first', true)" class="button"><i class="fas fa-plus"></i></button> 
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input id="second-ticket-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                    <button onclick="handleTicketChange('second', false)" class="button"><i class="fas fa-minus"></i></button>
+                    <button onclick="handleTicketChange('second', true)" class="button"><i class="fas fa-plus"></i></button> 
                 </div>
             </div>
             <div class="calculations">
@@ -103,6 +107,119 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
         </div>
     </section>
+
+
+
+
+    <script>
+        function handleTicketChange (ticket, isIncrease) {
+            const ticketInput = document.getElementById(ticket + '-ticket-count'); 
+            const ticketCount = parseFloat(ticketInput.value); 
+            let ticketNewCount = ticketCount;
+            if (isIncrease == true) {
+                ticketNewCount = ticketNewCount + 1;
+            }
+            if (isIncrease == false && ticketCount > 0) {
+                ticketNewCount = ticketNewCount - 1;
+            }
+            ticketInput.value = ticketNewCount;
+
+            let ticketPrice = 0; 
+            if (ticket == 'first') {
+                ticketPrice = ticketNewCount * 150; 
+            }
+            if (ticket == 'second') {
+                ticketPrice = ticketNewCount * 100; 
+            }
+        }
+
+        // function calculateTotal () {
+        //     const firstTicketCount = getInputValue('first'); 
+        //     const secondTicketCount = getInputValue('second');
+        //     const totalPrice = firstTicketCount + secondTicketCount;
+        //     console.log(totalPrice);
+        // }
+
+
+        // function handleSecondClassTicketChange (isIncrease) {
+        //     const ticketInput = document.getElementById('ticket-quantity-2nd'); 
+        //     const ticketCount = parseFloat(ticketInput.value); 
+        //     let ticketNewCount = ticketCount;
+        //     if (isIncrease == true) {
+        //         ticketNewCount = ticketNewCount + 1;
+        //     }
+        //     if (isIncrease == false && ticketCount > 0) {
+        //         ticketNewCount = ticketNewCount - 1;
+        //     }
+        //     ticketInput.value = ticketNewCount;
+        //     const ticketPrice2nd = ticketNewCount * 100; 
+        //     console.log(ticketPrice2nd);
+        // }
+
+
+
+        // function handleFirstClassTicketChange (isIncrease) {
+        //     const ticketInput = document.getElementById('ticket-quantity-1st'); 
+        //     const ticketCount = parseFloat(ticketInput.value); 
+        //     let ticketNewCount = ticketCount;
+        //     if (isIncrease == true) {
+        //         ticketNewCount = ticketNewCount + 1;
+        //     }
+        //     if (isIncrease == false && ticketCount > 0) {
+        //         ticketNewCount = ticketNewCount - 1;
+        //     }
+        //     ticketInput.value = ticketNewCount;
+        //     const ticketPrice1st = ticketNewCount * 150; 
+        //     console.log(ticketPrice1st);
+        // }
+
+
+        // function handleSecondClassTicketChange (isIncrease) {
+        //     const ticketInput = document.getElementById('ticket-quantity-2nd'); 
+        //     const ticketCount = parseFloat(ticketInput.value); 
+        //     let ticketNewCount = ticketCount;
+        //     if (isIncrease == true) {
+        //         ticketNewCount = ticketNewCount + 1;
+        //     }
+        //     if (isIncrease == false && ticketCount > 0) {
+        //         ticketNewCount = ticketNewCount - 1;
+        //     }
+        //     ticketInput.value = ticketNewCount;
+        //     const ticketPrice2nd = ticketNewCount * 100; 
+        //     console.log(ticketPrice2nd);
+        // }
+
+
+        // document.getElementById('first-ticket-increase').addEventListener('click', function() {
+        //     const ticketInput = document.getElementById('ticket-quantity-1st'); 
+        //     const ticketCount = parseFloat(ticketInput.value); 
+        //     const ticketNewCount = ticketCount + 1;
+        //     ticketInput.value = ticketNewCount;
+            
+        //     const ticketPrice1st = ticketNewCount * 150; 
+        //     console.log(ticketPrice1st);
+
+        // })
+
+        // document.getElementById('first-ticket-increase').addEventListener('click', function() {
+        //     const ticketInput = document.getElementById('ticket-quantity-1st'); 
+        //     const ticketCount = parseFloat(ticketInput.value); 
+        //     const ticketNewCount = ticketCount - 1;
+        //     ticketInput.value = ticketNewCount;
+        //     const ticketPrice1st = ticketNewCount * 150; 
+        //     console.log(ticketPrice1st);
+        // })
+    </script>
+
+
+
+
+
+
+
+
+
+
 
     <!--Thank You-->
 </body>
